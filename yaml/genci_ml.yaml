@@ -1,0 +1,81 @@
+MAX_ITEM_LIST_LENGTH: 50
+max_item_seq_length : 50
+LIST_SUFFIX: _list
+ITEM_LIST_LENGTH_FIELD: item_length
+# dataset config
+field_separator: "\t"
+seq_separator: " "
+USER_ID_FIELD: user_id
+ITEM_ID_FIELD: item_id
+RATING_FIELD: rating
+NEG_PREFIX: neg_
+LABEL_FIELD: label
+
+
+
+benchmark_filename:
+    train: movielens.train.inter
+    test: movielens.test.inter
+    valid: movielens.valid.inter
+
+load_col:
+    inter: [user_id,item_id,label,age,gender,occupation,release_year,genre,item_seq]
+
+
+epochs: 500
+train_batch_size: 1024
+eval_batch_size: 1024
+
+eval_args:
+#  split: {'RS':[0.8, 0.1, 0.1]}
+ group_by: ~
+ mode: labeled
+ order: RO
+valid_metric: AUC
+metrics: ['AUC', 'LogLoss']
+
+
+checkpoint_dir: ./checkpoints/
+stopping_step: 2
+show_progress : False
+
+learning_rate: 0.003
+mlp_hidden_size: [256,256,256]
+
+pooling_mode: 'mean'
+dropout_prob: 0.1  
+embedding_size: 16
+
+belta : 1
+gamma : 1  
+gpu_id : '1'
+
+#code
+n_codebooks : 3
+codebook_size : 256
+expand_final: True
+
+# Config for TIGER
+n_user_tokens: 0      # Number of user tokens hashed from user ids
+max_item_seq_len: 50  # Maximum #items in a sequence
+num_beams: 1         # Number of beams for beam search
+test_num_beams: 1
+
+# Config for T5
+num_layers: 2
+num_decoder_layers: 3
+d_model: 64
+d_ff: 64
+num_heads: 8
+d_kv: 32
+dropout_rate_t5: 0
+activation_function: "relu"
+feed_forward_proj: "relu"
+
+#deepfm
+dropout_prob_fm : 0.3 
+mlp_hidden_size_fm: [128,128,128]
+stopping_step: 2
+##cross attention
+num_heads_ca: 2
+croatt_dropout_prob : 0.2 
