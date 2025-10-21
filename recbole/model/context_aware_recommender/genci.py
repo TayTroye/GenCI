@@ -80,7 +80,7 @@ class GenCI(ContextRecommender):
             activation_function=config['activation_function'],
             vocab_size= vocab_size,
             pad_token_id= padding_token,
-            eos_token_id= eos_token, #碰到她over
+            eos_token_id= eos_token, 
             decoder_start_token_id=0,
             feed_forward_proj=config['feed_forward_proj'],
             n_positions= max_token_seq_len,
@@ -457,7 +457,7 @@ class GenCI(ContextRecommender):
             self.user_encoder_cache[user_ids] = encoder_representation
             self.user_seq_output_cache[user_ids] = seq_output
         else: 
-            t5_loss = torch.tensor(0.0, device=device) # 
+            t5_loss = torch.tensor(0.0, device=device)  
             preds_flat = self.user_preds_cache[user_ids]
             encoder_representation = self.user_encoder_cache[user_ids]
             seq_output = self.user_seq_output_cache[user_ids]
