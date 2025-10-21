@@ -423,7 +423,7 @@ class GenCI(ContextRecommender):
 
 
 
-    def forward_accelerate(self, interaction,item_seq, next_items,item_seq_code, next_items_code):
+    def inference_accelerate(self, interaction,item_seq, next_items,item_seq_code, next_items_code):
 
         user_ids = interaction['user_id']
         B, L = item_seq.size()
