@@ -394,10 +394,9 @@ class GenCI(ContextRecommender):
         next_token_logits = logits[:, -1, :]
 
 
-        # 当前正在生成的列数：
-        current_col = decoder_input_ids.shape[1] - 1  # 因为decoder_input_ids包含start token，所以-1
-        current_mask = self.allowed_masks[current_col]  #
-        next_token_logits = next_token_logits + current_mask  # 不允许的token被 -inf 掉
+        current_col = decoder_input_ids.shape[1] - 1  
+        current_mask = self.allowed_masks[current_col]  
+        next_token_logits = next_token_logits + current_mask   
 
 
 
